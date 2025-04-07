@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de tarefas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="Container">
+        <div class="heander">
+            <img src="./img/app_registration_24dp_000000_FILL0_wght400_GRAD0_opsz24.png" alt="Icone lista de tarefas ">
+            <h1>Lista de Tarefas</h1>
+        </div>
+        <input type="text" id="tarefaInput" placeholder="Digite uma tarefa">
+        <button class="adicionarTarefa" onclick="adicionarTarefa()">Adicionar</button>
+        <ul id="listaTarefas"></ul>
+    </div>
+
+    <script>
+        let tarefas = [];
+
+        function adicionarTarefa(){
+            const input = document.getElementById('tarefaInput')
+            const tarefa = input.value.trim();
+
+            if(tarefas){
+                tarefas.push(tarefa);
+                input.value = '';
+                atualizarLista();
+            }
+        
+        }
+
+        function removerTarefa(index){
+            tarefas.splice(index, 1);
+            atualizarLista();
+        }
+
+        function atualizarLista(){
+            const lista = document.getElementById('listaTarefas');
+            lista.innerHTML = '';
+            tarefas.forEach((tarefa,index) =>{
+            const li = document.createElement('li');
+
+            li. innerHTML = `${tarefa} <button class = "removerTarefa" onclick = "removerTarefa" (${index})">Remover</button>`;
+
+            lista.appendChild(li);
+            });
+        }
+    </script>
+</body>
+</html>
